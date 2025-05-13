@@ -67,33 +67,17 @@ class Player:
 			pass
 		elif self.state==State.MOVE_FORWARD:
 			if self.move_count==0:
-				self.move_count=32
+				self.move_count=32/self.speed
 			else:
 				self.move_forward()
 		elif self.state==State.TURN_LEFT:
 			if self.move_count==0:
 				self.move_count=90/self.speed
-				if self.direction==Direction.UP:
-					self.direction=Direction.LEFT
-				elif self.direction==Direction.DOWN:
-					self.direction=Direction.RIGHT
-				elif self.direction==Direction.LEFT:
-					self.direction=Direction.DOWN
-				elif self.direction==Direction.RIGHT:
-					self.direction=Direction.UP
 			else:
 				self.turn_left()
 		elif self.state==State.TURN_RIGHT:
 			if self.move_count==0:
 				self.move_count=90/self.speed
-				if self.direction==Direction.UP:
-					self.direction=Direction.RIGHT
-				elif self.direction==Direction.DOWN:
-					self.direction=Direction.LEFT
-				elif self.direction==Direction.LEFT:
-					self.direction=Direction.UP
-				elif self.direction==Direction.RIGHT:
-					self.direction=Direction.DOWN
 			else:
 				self.turn_right()
 		
@@ -107,13 +91,13 @@ class Player:
 
 	def move_forward(self):
 		if self.direction==Direction.UP:
-			self.y-=1
+			self.y-=self.speed
 		elif self.direction==Direction.DOWN:
-			self.y+=1
+			self.y+=self.speed
 		elif self.direction==Direction.LEFT:
-			self.x-=1
+			self.x-=self.speed
 		elif self.direction==Direction.RIGHT:
-			self.x+=1
+			self.x+=self.speed
 			
 		self.move_count -= 1
 		if self.move_count <= 0:
@@ -126,6 +110,14 @@ class Player:
 		self.move_count -= 1
 		if self.move_count <= 0:
 			self.move_count = 0
+			if self.direction==Direction.UP:
+				self.direction=Direction.LEFT
+			elif self.direction==Direction.DOWN:
+				self.direction=Direction.RIGHT
+			elif self.direction==Direction.LEFT:
+				self.direction=Direction.DOWN
+			elif self.direction==Direction.RIGHT:
+				self.direction=Direction.UP
 			self.state=State.IDLE
 			
 	def turn_right(self):
@@ -134,5 +126,13 @@ class Player:
 		self.move_count -= 1
 		if self.move_count <= 0:
 			self.move_count = 0
+			if self.direction==Direction.UP:
+				self.direction=Direction.RIGHT
+			elif self.direction==Direction.DOWN:
+				self.direction=Direction.LEFT
+			elif self.direction==Direction.LEFT:
+				self.direction=Direction.UP
+			elif self.direction==Direction.RIGHT:
+				self.direction=Direction.DOWN
 			self.state=State.IDLE
 

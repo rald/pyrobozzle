@@ -17,6 +17,8 @@ pygame.init()
 # Set up the game window
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 pygame.display.set_caption("robozzle")
+programIcon = pygame.image.load('images/star.png')
+pygame.display.set_icon(programIcon)
 
 
 ship=player.Player(SCREEN_WIDTH/2,SCREEN_HEIGHT/2)
@@ -44,7 +46,7 @@ while running:
 					ship.state = player.State.TURN_RIGHT
 
 	screen.fill((0,0,0))
-		
+	"""
 	pygame.draw.rect(screen,(0,0,255),[SCREEN_WIDTH/2-16,SCREEN_HEIGHT/2-16,32,32])
 	pygame.draw.rect(screen,(255,255,255),[SCREEN_WIDTH/2-16,SCREEN_HEIGHT/2-16,32,32],1)
 		
@@ -58,6 +60,7 @@ while running:
 				
 	for i in range(sprite.f):
 		sprite.draw(screen,i*sprite.w*4+8,8,i,2)	
+	"""
 		
 	star.draw(screen)
 
