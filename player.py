@@ -1,5 +1,8 @@
 import pygame
 import math
+
+import palette
+
 from enum import Enum
 
 
@@ -40,27 +43,23 @@ class Player:
 	
 	angle = 0
 	
-	speed = 2
+	speed = 1
 
 	def __init__(self,x,y):
 		self.x=x
 		self.y=y
 
-		for i in range(len(self.ship)):
-			self.ship[i][0]=self.ship[i][0]*Player.SHIP_SIZE
-			self.ship[i][1]=self.ship[i][1]*Player.SHIP_SIZE
-	
 	def draw(self,screen):
 		ship=[]
 
 		for i in range(len(self.ship)):
-			ship.append([self.ship[i][0]+self.x,self.ship[i][1]+self.y])
+			ship.append([self.ship[i][0]*Player.SHIP_SIZE+self.x,self.ship[i][1]*Player.SHIP_SIZE+self.y])
 
 		for i in range(len(ship)):
 			ship[i]=Player.rotate((self.x,self.y),ship[i],self.angle)
 			
-		pygame.draw.polygon(screen,(255,0,0),ship)
-		pygame.draw.polygon(screen,(255,255,255),ship,1)		
+		pygame.draw.polygon(screen,palette.sweetie[0x02],ship)
+		pygame.draw.polygon(screen,palette.sweetie[0x0C],ship,1)		
 
 	def update(self):
 		if self.state==State.IDLE:

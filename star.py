@@ -1,6 +1,8 @@
 import pygame
 import math
 
+import palette
+
 class Star:
 	def __init__(self,center_x,center_y,radius):
 		self.center_x = center_x
@@ -21,6 +23,6 @@ class Star:
 		    self.angle += math.pi / 5  # 36 degrees per point step (360/10)
                  
 	def draw(self,screen):
-		pygame.draw.polygon(screen,(255,255,0),self.points)
-		pygame.draw.polygon(screen,(255,255,255),self.points,1)
+		pygame.draw.polygon(screen,palette.sweetie[0x05],self.points)
+		pygame.draw.polygon(screen,palette.sweetie[0x0C],self.points,1)
 

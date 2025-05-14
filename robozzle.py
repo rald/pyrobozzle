@@ -13,6 +13,8 @@ SCREEN_HEIGHT = 480
 
 # Initialize Pygame
 pygame.init()
+pygame.font.init()
+pygame.mixer.init() 
 
 # Set up the game window
 screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
@@ -26,6 +28,8 @@ star=star.Star(SCREEN_WIDTH/2,SCREEN_HEIGHT/2,12)
 
 sprite=canvas.Canvas("sprite-00.cvs")
 
+move_sfx = pygame.mixer.Sound("sounds/move.wav")
+
 # Game loop
 running = True
 while running:
@@ -37,12 +41,15 @@ while running:
 				running = False
 			elif event.key == pygame.K_UP:
 				if ship.move_count==0:
+					#pygame.mixer.Sound.play(move_sfx)
 					ship.state = player.State.MOVE_FORWARD
 			elif event.key == pygame.K_LEFT:
 				if ship.move_count==0:
+					#pygame.mixer.Sound.play(move_sfx)
 					ship.state = player.State.TURN_LEFT
 			elif event.key == pygame.K_RIGHT:
 				if ship.move_count==0:
+					#pygame.mixer.Sound.play(move_sfx)
 					ship.state = player.State.TURN_RIGHT
 
 	screen.fill((0,0,0))
